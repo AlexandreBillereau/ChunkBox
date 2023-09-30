@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-white;
+    --black-color: #050315;
+    --white-color: #fbfbfe;
+    --primary-color: #2f27ce;
+    --secondary-color: #dedcff;
+    --accent-color: #433bff;
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply text-white font-bold px-4 py-2 rounded bg-blue-600 hover:bg-blue-500;
+  }
+}
+
+@font-face {
+  font-family: "EuropaBold";
+  src: url("assets/fonts/Europa-Bold.ttf");
+}
+
+@font-face {
+  font-family: "euroStyle";
+  src: url("assets/fonts/eurostile.TTF");
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("assets/fonts/Poppins-Medium.ttf");
+}
+
+.europa-bold {
+  font-family: "EuropaBold";
+}
+
+.euro-style {
+  font-family: "euroStyle";
+}
+
+.poppins {
+  font-family: "Poppins";
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+.white-bg {
+  background-color: var(--white-color);
+}
+
+.accent-bg {
+  background-color: var(--accent-color);
+}
+
+.primary-bg {
+  background-color: var(--primary-color);
+}
+
+.secondary-bg {
+  background-color: var(--secondary-color);
+}
+
+.lt-border-black {
+  border-bottom: solid 1px var(--black-color);
+}
+
+.black-text {
+  color: var(--black-color);
+}
+
+.accent-text {
+  color: var(--accent-color);
+}
+
+.navLink {
+  background-color: var(--accent-color);
+  transition: 0.3s ease-in-out;
+}
+.navLink:hover {
+  background-color: var(--primary-color);
+}
+
+nav::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--accent-color);
+}
+
+nav::-webkit-scrollbar-thumb {
+  background-color: #050315;
+}
+
+.button-new-box {
+  filter: drop-shadow(0px 0px 0px #413bff00);
+  transition: 0.3s ease-in-out;
+}
+
+.button-new-box:hover {
+  filter: drop-shadow(0px 7px 8px #433bff);
+}
+
+.lt-level-box {
+  background-color: var(--black-color);
+  border-radius: 15px;
+  padding: 0px 0px 5px 15px;
+}
+
+.lt-learned-box {
+  background-color: var(--black-color);
+  border-radius: 15px;
+}
+
+.lt-level-box.lt-level-box-current {
+  background-color: var(--primary-color);
+}
