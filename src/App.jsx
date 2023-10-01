@@ -3,7 +3,7 @@ import { invoke } from "@tauri-apps/api/tauri";
 import LeitnerBox from "./leitnerBox";
 import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { createDataFolder } from "./backend/init";
-import { ReadJsonBox } from "./backend/ioBox";
+import { createBox, readJsonBox } from "./backend/ioBox";
 
 const App = () => {
   const [boxs, setBoxes] = useState([]);
@@ -11,7 +11,7 @@ const App = () => {
   useEffect(() => {
     //init the app
     createDataFolder(async () => {
-      const jsonBox = await ReadJsonBox();
+      const jsonBox = await readJsonBox();
       console.log(jsonBox);
     });
   }, []);
@@ -59,7 +59,12 @@ const App = () => {
             })}
           </nav>
           <div className="flex justify-center">
-            <button className="button-new-box primary-bg europa-bold mt-5 w-[200px] px-[41px] py-[16px] rounded-[5px] text-[25px]">
+            <button
+              onClick={() => {
+                createBox("test 2");
+              }}
+              className="button-new-box primary-bg europa-bold mt-5 w-[200px] px-[41px] py-[16px] rounded-[5px] text-[25px]"
+            >
               NEW BOX
             </button>
           </div>

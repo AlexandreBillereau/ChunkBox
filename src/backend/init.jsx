@@ -17,7 +17,7 @@ export const createDataFolder = async (callback = () => {}) => {
       !(await exists("data/data.json", { dir: BaseDirectory.AppLocalData }))
     ) {
       await writeFile(
-        { path: "data/data.json", contents: '{"boxs" : {}}' },
+        { path: "data/data.json", contents: '{"boxs" : []}' },
         { dir: BaseDirectory.AppLocalData }
       );
     }
