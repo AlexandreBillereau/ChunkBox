@@ -1,13 +1,20 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
-import "./App.css";
 import LeitnerBox from "./leitnerBox";
 import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
+import { ReadJsonBox as ReadToJsonBox, createDataFolder } from "./backend/init";
 
-const App = async () => {
+const App = () => {
+  const [boxs, setBoxes] = useState([]);
+
+  useEffect(() => {
+    //init the app
+    createDataFolder(async () => {
+      const jsonBox = await ReadToJsonBox();
+      console.log(jsonBox);
+    });
+  }, []);
   //load all box one computer
-
   const fakeBox = [
     { title: "LeetCode", review: 2, day: 2, learned: 0 },
     { title: "Math 1001", review: 5, day: 4, learned: 0 },
@@ -15,6 +22,7 @@ const App = async () => {
 
   return (
     <>
+      {boxs}
       <div className="flex">
         <div className="flex flex-col white-bg h-[100vh] w-[330px]">
           <div className="flex flex-col p-4">
