@@ -18,14 +18,15 @@ export const readJsonBox = async () => {
   }
 };
 
-export const createBox = async (title) => {
+export const createBox = async () => {
   try {
     const boxObj = await readJsonBox();
-    console.log("boxObj", boxObj);
     boxObj["boxs"].push({
-      title,
+      id: boxObj["boxs"].length + 1,
+      title: "new box",
+      review: false,
       days: 0,
-      Learned: 0,
+      learned: 0,
       level: [
         {
           id: 1,

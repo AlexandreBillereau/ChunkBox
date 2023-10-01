@@ -4,26 +4,22 @@ import LeitnerBox from "./leitnerBox";
 import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { createDataFolder } from "./backend/init";
 import { createBox, readJsonBox } from "./backend/ioBox";
+import { Button, Form, Input, Modal } from "antd";
 
 const App = () => {
-  const [boxs, setBoxes] = useState([]);
+  const [boxs, setBoxs] = useState([]);
 
   useEffect(() => {
     //init the app
     createDataFolder(async () => {
       const jsonBox = await readJsonBox();
       console.log(jsonBox);
+      setBoxs(jsonBox.boxs);
     });
   }, []);
-  //load all box one computer
-  const fakeBox = [
-    { title: "LeetCode", review: 2, day: 2, learned: 0 },
-    { title: "Math 1001", review: 5, day: 4, learned: 0 },
-  ];
 
   return (
     <>
-      {boxs}
       <div className="flex">
         <div className="flex flex-col white-bg h-[100vh] w-[330px]">
           <div className="flex flex-col p-4">
@@ -36,7 +32,7 @@ const App = () => {
             </h6>
           </div>
           <nav className="flex flex-col max-h-[700px] overflow-y-auto">
-            {fakeBox.map((boxLink, index) => {
+            {boxs.map((boxLink, index) => {
               return (
                 <div
                   key={index}
@@ -49,7 +45,7 @@ const App = () => {
                     {boxLink.review} to review
                   </span>
                   <div className="flex mt-2 -ml-1">
-                    <span>🔥 Day : {boxLink.day} </span>
+                    <span>🔥 Day : {boxLink.days} </span>
                     <span className="ml-[21px]">
                       💯 Learned : {boxLink.learned}{" "}
                     </span>
@@ -60,8 +56,11 @@ const App = () => {
           </nav>
           <div className="flex justify-center">
             <button
-              onClick={() => {
-                createBox("test 2");
+              onClick={async () => {
+                await createBox();
+                const boxListToUpdate = await readJsonBox();
+                console.log(boxListToUpdate);
+                setBoxs(boxListToUpdate.boxs);
               }}
               className="button-new-box primary-bg europa-bold mt-5 w-[200px] px-[41px] py-[16px] rounded-[5px] text-[25px]"
             >
