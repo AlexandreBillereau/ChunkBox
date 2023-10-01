@@ -86,6 +86,11 @@ h2 {
   background-color: var(--accent-color);
   transition: 0.3s ease-in-out;
 }
+
+.navLinkActive {
+  background-color: var(--primary-color);
+}
+
 .navLink:hover {
   background-color: var(--primary-color);
 }

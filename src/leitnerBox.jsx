@@ -1,8 +1,8 @@
-const LeitnerBox = ({ box = {} }) => {
+const LeitnerBox = ({ box }) => {
   return (
     <>
       <section className="w-[100%]">
-        <div className="secondary-bg flex pt-[20px]">
+        <div className="top# secondary-bg flex pt-[20px]">
           <div className="level# flex flex-col ">
             <div className="flex items-center pl-[47px] mb-[6px]">
               <span className="euro-style black-text text-[30px] mr-4">
@@ -39,7 +39,7 @@ const LeitnerBox = ({ box = {} }) => {
               </div>
             </div>
           </div>
-          <div className="level# flex flex-col ">
+          <div className="Learned# flex flex-col ">
             <div className="flex items-center pl-[47px] mb-[6px]">
               <span className="euro-style black-text text-[30px] mr-4">
                 Learned
@@ -67,6 +67,7 @@ const LeitnerBox = ({ box = {} }) => {
             </div>
           </div>
         </div>
+        <div>{box.title}</div>
       </section>
     </>
   );

@@ -8,6 +8,7 @@ import { Button, Form, Input, Modal } from "antd";
 
 const App = () => {
   const [boxs, setBoxs] = useState([]);
+  const [currentBox, setCurrentBox] = useState({});
 
   useEffect(() => {
     //init the app
@@ -17,6 +18,13 @@ const App = () => {
       setBoxs(jsonBox.boxs);
     });
   }, []);
+
+  const handleCurentBox = (box, HtmlElementBox) => {
+    setCurrentBox(box);
+    if (currentHtmlElementBox != null) {
+    }
+    console.log(HtmlElementBox);
+  };
 
   return (
     <>
@@ -32,22 +40,25 @@ const App = () => {
             </h6>
           </div>
           <nav className="flex flex-col max-h-[700px] overflow-y-auto">
-            {boxs.map((boxLink, index) => {
+            {boxs.map((_box, index) => {
               return (
                 <div
+                  onClick={() => {
+                    setCurrentBox(_box);
+                  }}
                   key={index}
-                  className="flex flex-col w-100 navLink p-4 lt-border-black cursor-pointer"
+                  className={`flex flex-col w-100 p-4 lt-border-black cursor-pointer ${
+                    currentBox == _box ? "navLinkActive" : "navLink"
+                  } `}
                 >
-                  <span className="text-[25px] europa-bold">
-                    {boxLink.title}
-                  </span>
+                  <span className="text-[25px] europa-bold">{_box.title}</span>
                   <span className="text-[15px] euro-style -mt-2">
-                    {boxLink.review} to review
+                    {_box.review} to review
                   </span>
                   <div className="flex mt-2 -ml-1">
-                    <span>🔥 Day : {boxLink.days} </span>
+                    <span>🔥Day : {_box.days} </span>
                     <span className="ml-[21px]">
-                      💯 Learned : {boxLink.learned}{" "}
+                      💯 Learned : {_box.learned}{" "}
                     </span>
                   </div>
                 </div>
@@ -68,7 +79,7 @@ const App = () => {
             </button>
           </div>
         </div>
-        <LeitnerBox></LeitnerBox>
+        <LeitnerBox box={currentBox}></LeitnerBox>
         {/* content here */}
       </div>
     </>
