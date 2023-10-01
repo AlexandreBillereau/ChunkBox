@@ -3,6 +3,7 @@ import {
   createDir,
   readTextFile,
   writeFile,
+  exists,
 } from "@tauri-apps/api/fs";
 import { resolveResource } from "@tauri-apps/api/path";
 
@@ -12,6 +13,14 @@ export const createDataFolder = async (callback = () => {}) => {
       dir: BaseDirectory.AppLocalData,
       recursive: true,
     });
+    if (
+      !(await exists("data/data.json", { dir: BaseDirectory.AppLocalData }))
+    ) {
+      await writeFile(
+        { path: "data/data.json", contents: '{"boxs" : {}}' },
+        { dir: BaseDirectory.AppLocalData }
+      );
+    }
     callback();
   } catch (e) {
     console.error(e);
@@ -20,6 +29,7 @@ export const createDataFolder = async (callback = () => {}) => {
 
 export const WriteJsonBox = async (callback = () => {}) => {
   try {
+    //this line dont do good thing refcator
     const jsonBox = await resolveResource("resources/box.json");
     console.log(jsonBox);
     await writeFile(
@@ -35,16 +45,5 @@ export const WriteJsonBox = async (callback = () => {}) => {
     callback();
   } catch (e) {
     console.error(e);
-  }
-};
-
-export const ReadJsonBox = async () => {
-  try {
-    console.log;
-    const jsonBox = await resolveResource("resources/box.json");
-    return JSON.parse(await readTextFile(jsonBox));
-  } catch (e) {
-    console.error(e);
-    return {};
   }
 };

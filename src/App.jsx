@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import LeitnerBox from "./leitnerBox";
 import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
-import { ReadJsonBox as ReadToJsonBox, createDataFolder } from "./backend/init";
+import { createDataFolder } from "./backend/init";
+import { ReadJsonBox } from "./backend/ioBox";
 
 const App = () => {
   const [boxs, setBoxes] = useState([]);
@@ -10,7 +11,7 @@ const App = () => {
   useEffect(() => {
     //init the app
     createDataFolder(async () => {
-      const jsonBox = await ReadToJsonBox();
+      const jsonBox = await ReadJsonBox();
       console.log(jsonBox);
     });
   }, []);
