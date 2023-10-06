@@ -9,7 +9,7 @@ import { Button, Form, Input, Modal } from "antd";
 const App = () => {
   const [boxs, setBoxs] = useState([]);
   const [currentBox, setCurrentBox] = useState({});
-
+  // console.log(currentBox);
   useEffect(() => {
     //init the app
     createDataFolder(async () => {
@@ -19,11 +19,9 @@ const App = () => {
     });
   }, []);
 
-  const handleCurentBox = (box, HtmlElementBox) => {
+  const handleCurentBox = (box) => {
+    //update the boxs to re-render component
     setCurrentBox(box);
-    if (currentHtmlElementBox != null) {
-    }
-    console.log(HtmlElementBox);
   };
 
   return (
@@ -79,7 +77,7 @@ const App = () => {
             </button>
           </div>
         </div>
-        <LeitnerBox box={currentBox}></LeitnerBox>
+        <LeitnerBox box={currentBox} setBox={setCurrentBox}></LeitnerBox>
         {/* content here */}
       </div>
     </>

@@ -5,10 +5,15 @@ import {
   writeFile,
   writeTextFile,
 } from "@tauri-apps/api/fs";
-import { resolveResource } from "@tauri-apps/api/path";
+import {
+  appLocalDataDir,
+  localDataDir,
+  resolveResource,
+} from "@tauri-apps/api/path";
 
 export const readJsonBox = async () => {
   try {
+    console.log("Read base directory: ", await appLocalDataDir());
     return JSON.parse(
       await readTextFile("data/data.json", { dir: BaseDirectory.AppLocalData })
     );

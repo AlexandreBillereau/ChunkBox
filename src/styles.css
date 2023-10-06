@@ -127,3 +127,8 @@ nav::-webkit-scrollbar-thumb {
 .lt-level-box.lt-level-box-current {
   background-color: var(--primary-color);
 }
+
+.headerBox {
+  border-bottom: 3px solid var(--black-color);
+  border-left: 3px solid var(--black-color);
+}
