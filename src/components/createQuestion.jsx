@@ -26,7 +26,7 @@ const CreateQuestion = () => {
           Title
         </h2>
       </div>
-      <input className="m-4 pl-2 h-[40px] text-black euro-style bg-transparent border-solid border-black border-[2px] rounded-[10px]"></input>
+      <input className="m-4 pl-2 h-[40px] text-black euro-style bg-transparent border-solid border-[#05031570] border-[1px] rounded-[3px]"></input>
       <div className="crt-title flex items-center w-fit h-fit cursor-pointer m-4 px-2 ">
         <h2 className="europa-bold tracking-wide black-text flex flex-col">
           Question
