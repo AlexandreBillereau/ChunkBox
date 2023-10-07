@@ -8,8 +8,8 @@ import { Button, Form, Input, Modal } from "antd";
 
 const App = () => {
   const [boxs, setBoxs] = useState([]);
-  const [currentBox, setCurrentBox] = useState({});
-  // console.log(currentBox);
+  const [currentBox, setCurrentBox] = useState(0);
+
   useEffect(() => {
     //init the app
     createDataFolder(async () => {
@@ -19,9 +19,12 @@ const App = () => {
     });
   }, []);
 
-  const handleCurentBox = (box) => {
-    //update the boxs to re-render component
-    setCurrentBox(box);
+  const updateCurentBox = (title) => {
+    //Update the boxs to re-render component
+    const boxsUpdate = [...boxs];
+    boxsUpdate[currentBox] = { ...boxsUpdate[currentBox], title: title };
+    setBoxs(boxsUpdate);
+    //write the boxs into file
   };
 
   return (
@@ -42,11 +45,11 @@ const App = () => {
               return (
                 <div
                   onClick={() => {
-                    setCurrentBox(_box);
+                    setCurrentBox(index);
                   }}
                   key={index}
                   className={`flex flex-col w-100 p-4 lt-border-black cursor-pointer ${
-                    currentBox == _box ? "navLinkActive" : "navLink"
+                    currentBox == index ? "navLinkActive" : "navLink"
                   } `}
                 >
                   <span className="text-[25px] europa-bold">{_box.title}</span>
@@ -77,7 +80,10 @@ const App = () => {
             </button>
           </div>
         </div>
-        <LeitnerBox box={currentBox} setBox={setCurrentBox}></LeitnerBox>
+        <LeitnerBox
+          box={boxs[currentBox]}
+          setBox={updateCurentBox}
+        ></LeitnerBox>
         {/* content here */}
       </div>
     </>

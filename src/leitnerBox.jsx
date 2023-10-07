@@ -2,10 +2,9 @@ import { useState } from "react";
 
 const LeitnerBox = ({ box, setBox = () => {} }) => {
   const [isTitleChange, setIsTitleChange] = useState(false);
-
   const handleInputTitleBox = (e) => {
-    box.title = e.target.value;
-    setBox(box);
+    setBox(e.target.value);
+    // console.log("current box", box);
   };
 
   return (
