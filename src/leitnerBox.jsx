@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const LeitnerBox = ({ box, setBox = () => {} }) => {
   const [isTitleChange, setIsTitleChange] = useState(false);
+  const [currentLevel, setCurrentLevel] = useState(0);
   const handleInputTitleBox = (e) => {
     setBox(e.target.value);
     // console.log("current box", box);
@@ -33,18 +34,34 @@ const LeitnerBox = ({ box, setBox = () => {} }) => {
               </svg>
             </div>
             <div className="flex pl-[47px] mb-[24px]">
-              <div className="lt-level-box flex flex-col w-[90px] h-[70px] mr-[15px] cursor-pointer">
-                <span className="poppins text-[30px]">1</span>
-                <span className="euro-style text-[15px] -mt-1">complete</span>
-              </div>
-              <div className="lt-level-box lt-level-box-current flex flex-col w-[90px] h-[70px] mr-[15px]">
+              {box.level.map((level, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setCurrentLevel(index);
+                    }}
+                    className={`lt-level-box ${
+                      currentLevel == index ? "lt-level-box-current" : ""
+                    } flex flex-col w-[90px] h-[70px] mr-[15px] cursor-pointer`}
+                  >
+                    <span className="poppins text-[30px]">{level.id}</span>
+                    <span className="euro-style text-[15px] -mt-1">
+                      complete
+                    </span>
+                  </div>
+                );
+              })}
+
+              {/* Code to current level */}
+              {/* <div className="lt-level-box lt-level-box-current flex flex-col w-[90px] h-[70px] mr-[15px]">
                 <span className="poppins text-[30px]">2</span>
                 <span className="euro-style text-[15px] -mt-1">review</span>
               </div>
               <div className="lt-level-box flex flex-col w-[90px] h-[70px] mr-[15px]">
                 <span className="poppins text-[30px]">3</span>
                 <span className="euro-style text-[15px] -mt-1">review</span>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="Learned# flex flex-col ">
