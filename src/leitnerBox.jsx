@@ -1,7 +1,7 @@
 import { useState } from "react";
 import QuestionNav from "./components/questionNav";
 import Start from "./components/start";
-import { useGlobalState } from "./states/states";
+import { setGlobalState, useGlobalState } from "./states/states";
 import CreateQuestion from "./components/createQuestion";
 
 const LeitnerBox = ({ box, updateBox = () => {} }) => {
@@ -49,6 +49,7 @@ const LeitnerBox = ({ box, updateBox = () => {} }) => {
                     key={index}
                     onClick={() => {
                       setCurrentLevel(index);
+                      setGlobalState("boxPage", "start");
                     }}
                     className={`lt-level-box ${
                       currentLevel == index ? "lt-level-box-current" : ""

@@ -47,7 +47,7 @@ const Start = ({ box, updateBox = () => {} }) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g clip-path="url(#clip0_18_18)">
+          <g clipPath="url(#clip0_18_18)">
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -374,8 +374,8 @@ const Start = ({ box, updateBox = () => {} }) => {
               strokeLinecap="round"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M135.706 146.996C134.362 147.213 123.409 137.919 121.778 136.009C120.978 135.064 118.276 132.307 121.666 135.497C126.052 139.179 130.867 142.02 135.946 143.924C136.018 144.9 136.018 145.882 135.946 146.858L135.706 146.996Z"
               fill="black"
             />

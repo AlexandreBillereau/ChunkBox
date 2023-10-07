@@ -5,6 +5,7 @@ import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { createDataFolder } from "./backend/init";
 import { createBox, readJsonBox } from "./backend/ioBox";
 import { Button, Form, Input, Modal } from "antd";
+import { setGlobalState } from "./states/states";
 
 const App = () => {
   const [boxs, setBoxs] = useState([]);
@@ -47,6 +48,7 @@ const App = () => {
                 <div
                   onClick={() => {
                     setCurrentBox(index);
+                    setGlobalState("boxPage", "start");
                   }}
                   key={index}
                   className={`flex flex-col w-100 p-4 lt-border-black cursor-pointer ${
@@ -72,7 +74,6 @@ const App = () => {
               onClick={async () => {
                 await createBox();
                 const boxListToUpdate = await readJsonBox();
-                console.log(boxListToUpdate);
                 setBoxs(boxListToUpdate.boxs);
               }}
               className="button-new-box primary-bg europa-bold mt-5 w-[200px] px-[41px] py-[16px] rounded-[5px] text-[25px]"
