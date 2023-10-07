@@ -132,3 +132,17 @@ nav::-webkit-scrollbar-thumb {
   border-bottom: 3px solid var(--black-color);
   border-left: 3px solid var(--black-color);
 }
+
+.questions-wrapper {
+  border-left: solid 3px var(--black-color);
+  border-right: solid 3px var(--black-color);
+  background-color: var(--black-color);
+}
+
+.btn-new-question {
+  transition: 0.5s;
+}
+
+.btn-new-question:hover {
+  background-color: var(--accent-color);
+}

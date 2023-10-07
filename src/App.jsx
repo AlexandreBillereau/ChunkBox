@@ -19,10 +19,11 @@ const App = () => {
     });
   }, []);
 
-  const updateCurentBox = (title) => {
+  const updateCurentBox = (box) => {
     //Update the boxs to re-render component
     const boxsUpdate = [...boxs];
-    boxsUpdate[currentBox] = { ...boxsUpdate[currentBox], title: title };
+    console.log("from app.jsx", box);
+    boxsUpdate[currentBox] = box;
     setBoxs(boxsUpdate);
     //write the boxs into file
   };
@@ -83,7 +84,7 @@ const App = () => {
         {boxs.length && (
           <LeitnerBox
             box={boxs[currentBox]}
-            setBox={updateCurentBox}
+            updateBox={updateCurentBox}
           ></LeitnerBox>
         )}
         {/* content here */}
