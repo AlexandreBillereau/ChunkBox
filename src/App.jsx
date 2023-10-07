@@ -80,10 +80,12 @@ const App = () => {
             </button>
           </div>
         </div>
-        <LeitnerBox
-          box={boxs[currentBox]}
-          setBox={updateCurentBox}
-        ></LeitnerBox>
+        {boxs.length && (
+          <LeitnerBox
+            box={boxs[currentBox]}
+            setBox={updateCurentBox}
+          ></LeitnerBox>
+        )}
         {/* content here */}
       </div>
     </>
