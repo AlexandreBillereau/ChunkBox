@@ -1,3 +1,5 @@
+import { setGlobalState } from "../states/states";
+
 const QuestionNav = () => {
   return (
     <div className="Question# questions-wrapper flex flex-col w-[330px]  back-bg">
@@ -20,7 +22,12 @@ const QuestionNav = () => {
           />
         </svg>
       </span>
-      <button className="btn-new-question europa-bold p-3 rounded-t-[10px] mt-[24px] primary-bg">
+      <button
+        onClick={() => {
+          setGlobalState("boxPage", "create");
+        }}
+        className="btn-new-question europa-bold p-3 rounded-t-[10px] mt-[24px] primary-bg"
+      >
         NEW QUESTION
       </button>
     </div>

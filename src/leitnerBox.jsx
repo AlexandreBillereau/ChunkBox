@@ -1,9 +1,21 @@
 import { useState } from "react";
 import QuestionNav from "./components/questionNav";
 import Start from "./components/start";
+import { useGlobalState } from "./states/states";
+import CreateQuestion from "./components/createQuestion";
 
 const LeitnerBox = ({ box, updateBox = () => {} }) => {
   const [currentLevel, setCurrentLevel] = useState(0);
+  const [boxPage] = useGlobalState("boxPage");
+
+  const renderPage = () => {
+    if (boxPage == "start") {
+      return <Start box={box} updateBox={updateBox}></Start>;
+    }
+    if (boxPage == "create") {
+      return <CreateQuestion></CreateQuestion>;
+    }
+  };
 
   return (
     <>
@@ -82,7 +94,7 @@ const LeitnerBox = ({ box, updateBox = () => {} }) => {
         <div className="flex h-[100%] w-[100%]">
           <QuestionNav></QuestionNav>
           <div className="flex flex-col  w-[100%] secondary-bg">
-            <Start box={box} updateBox={updateBox}></Start>
+            {renderPage()}
           </div>
         </div>
       </section>
