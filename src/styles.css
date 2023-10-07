@@ -58,6 +58,14 @@ h2 {
   background-color: var(--white-color);
 }
 
+.white-text {
+  color: var(--white-color);
+}
+
+.black-bg {
+  background-color: var(--black-color);
+}
+
 .accent-bg {
   background-color: var(--accent-color);
 }
@@ -119,6 +127,16 @@ nav::-webkit-scrollbar-thumb {
   padding: 0px 0px 5px 15px;
 }
 
+.crt-title {
+  border-bottom: 3px solid var(--black-color);
+  border-left: 3px solid var(--black-color);
+  border-bottom-left-radius: 10px;
+}
+
+.logo-create {
+  fill: var(--accent-color);
+}
+
 .lt-learned-box {
   background-color: var(--black-color);
   border-radius: 15px;
@@ -145,4 +163,8 @@ nav::-webkit-scrollbar-thumb {
 
 .btn-new-question:hover {
   background-color: var(--accent-color);
+}
+
+.trix-button-row > * {
+  fill: var(--white-color) !important;
 }
