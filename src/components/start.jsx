@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { setGlobalState } from "../states/states";
 
 const Start = ({ box, updateBox = () => {} }) => {
   const [isTitleChange, setIsTitleChange] = useState(false);
+
   const handleInputTitleBox = (e) => {
-    const updatedBox = { ...box, title: e.target.value };
     updateBox({ ...box, title: e.target.value });
   };
 
@@ -486,7 +487,12 @@ const Start = ({ box, updateBox = () => {} }) => {
           </svg>
         </div>
       </div>
-      <button className="button-new-box primary-bg europa-bold mt-20 ml-10 w-[200px] px-[41px] py-[16px] rounded-[5px] text-[25px]">
+      <button
+        onClick={() => {
+          setGlobalState("boxPage", "play");
+        }}
+        className="button-new-box primary-bg europa-bold mt-20 ml-10 w-[200px] px-[41px] py-[16px] rounded-[5px] text-[25px]"
+      >
         START
       </button>
     </>

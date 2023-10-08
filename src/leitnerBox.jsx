@@ -3,6 +3,7 @@ import QuestionNav from "./components/questionNav";
 import Start from "./components/start";
 import { setGlobalState, useGlobalState } from "./states/states";
 import CreateQuestion from "./components/createQuestion";
+import Play from "./components/play";
 
 const LeitnerBox = ({ box, updateBox = () => {} }) => {
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -13,7 +14,10 @@ const LeitnerBox = ({ box, updateBox = () => {} }) => {
       return <Start box={box} updateBox={updateBox}></Start>;
     }
     if (boxPage == "create") {
-      return <CreateQuestion></CreateQuestion>;
+      return <CreateQuestion box={box}></CreateQuestion>;
+    }
+    if (boxPage == "play") {
+      return <Play></Play>;
     }
   };
 
@@ -93,7 +97,7 @@ const LeitnerBox = ({ box, updateBox = () => {} }) => {
           </div>
         </div>
         <div className="flex h-[100%] w-[100%]">
-          <QuestionNav></QuestionNav>
+          <QuestionNav currentLevel={box.level[currentLevel]}></QuestionNav>
           <div className="flex flex-col  w-[100%] secondary-bg">
             {renderPage()}
           </div>

@@ -1,6 +1,6 @@
 import { setGlobalState } from "../states/states";
 
-const QuestionNav = () => {
+const QuestionNav = ({ currentLevel = [] }) => {
   return (
     <div className="Question# questions-wrapper flex flex-col w-[330px]  black-bg">
       <span className=" flex justify-center mt-5 europa-bold text-white text-[15px]">
@@ -30,6 +30,9 @@ const QuestionNav = () => {
       >
         NEW QUESTION
       </button>
+      {currentLevel.questions.map((quest) => {
+        return <p>{quest.title}</p>;
+      })}
     </div>
   );
 };

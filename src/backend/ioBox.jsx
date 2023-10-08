@@ -23,6 +23,21 @@ export const readJsonBox = async () => {
   }
 };
 
+export const IOcreateQuestion = async (boxId, title, question, answer) => {
+  const boxObj = await readJsonBox();
+  const currentIndex = boxObj["boxs"].findIndex((elem) => elem.id == boxId);
+  boxObj.boxs[currentIndex].level[0].questions.push({
+    title,
+    question,
+    answer,
+    data: new Date(),
+  });
+  await writeTextFile(
+    { contents: JSON.stringify(boxObj), path: "data/data.json" },
+    { dir: BaseDirectory.AppLocalData }
+  );
+};
+
 export const createBox = async () => {
   try {
     const boxObj = await readJsonBox();

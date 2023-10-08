@@ -1,10 +1,19 @@
 import "trix/dist/trix.esm.min.js";
 import "trix/dist/trix.css";
 import { TrixEditor } from "react-trix";
+import { useRef } from "react";
+import { IOcreateQuestion } from "../backend/ioBox";
 
-const CreateQuestion = () => {
+const CreateQuestion = ({ box }) => {
+  const questionRef = useRef();
+  const inputRef = useRef();
+  const handleChange = (html, text) => {
+    console.log("html : ", html);
+    console.log("text : ", text);
+  };
+
   return (
-    <>
+    <div className="h-[80vh] overflow-y-auto overflow-x-hidden">
       <div className="crt-title flex items-center w-fit h-fit cursor-pointer m-4 px-3 ">
         <h1 className="europa-bold tracking-wide black-text flex flex-col">
           Create Question
@@ -26,14 +35,22 @@ const CreateQuestion = () => {
           Title
         </h2>
       </div>
-      <input className="m-4 pl-2 h-[40px] text-black euro-style bg-transparent border-solid border-[#05031570] border-[1px] rounded-[3px]"></input>
+      <div className="p-4">
+        <input
+          ref={inputRef}
+          className="pl-2 h-[40px] w-[100%] text-black euro-style bg-transparent border-solid border-[#05031570] border-[1px] rounded-[3px]"
+        ></input>
+      </div>
       <div className="crt-title flex items-center w-fit h-fit cursor-pointer m-4 px-2 ">
         <h2 className="europa-bold tracking-wide black-text flex flex-col">
           Question
         </h2>
       </div>
       <div className="p-4">
-        <TrixEditor className="euro-style text-black"></TrixEditor>
+        <TrixEditor
+          ref={questionRef}
+          className="euro-style h-[300px] text-black"
+        ></TrixEditor>
       </div>
       <div className="crt-title flex items-center w-fit h-fit cursor-pointer m-4 px-2 ">
         <h2 className="europa-bold tracking-wide black-text flex flex-col">
@@ -41,14 +58,27 @@ const CreateQuestion = () => {
         </h2>
       </div>
       <div className="p-4">
-        <TrixEditor className="euro-style text-black"></TrixEditor>
+        <TrixEditor
+          className="euro-style h-[300px] text-black overflow-y-auto"
+          onChange={handleChange}
+        ></TrixEditor>
       </div>
       <div className="p-4 flex justify-end">
-        <button className="btn-new-question europa-bold p-3 rounded-[10px] mt-[24px] primary-bg">
+        <button
+          onClick={() => {
+            IOcreateQuestion(
+              box.id,
+              "Title",
+              "Question du futur",
+              "repoonse du futur"
+            );
+          }}
+          className="btn-new-question europa-bold p-3 rounded-[10px] mt-[24px] primary-bg"
+        >
           Save 🤗
         </button>
       </div>
-    </>
+    </div>
   );
 };
 export default CreateQuestion;
