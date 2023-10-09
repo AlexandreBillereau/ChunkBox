@@ -10,11 +10,6 @@ const CreateQuestion = ({ box, updateCurrentBox = () => {} }) => {
   const titleRef = useRef();
   const answerRef = useRef();
 
-  const handleChange = (html, text) => {
-    console.log("html : ", html);
-    console.log("text : ", text);
-  };
-
   return (
     <div className="h-[80vh] overflow-y-auto overflow-x-hidden">
       <div className="crt-title flex items-center w-fit h-fit cursor-pointer m-4 px-3 ">
@@ -64,7 +59,6 @@ const CreateQuestion = ({ box, updateCurrentBox = () => {} }) => {
         <TrixEditor
           ref={answerRef}
           className="euro-style h-[300px] text-black overflow-y-auto"
-          onChange={handleChange}
         ></TrixEditor>
       </div>
       <div className="p-4 flex justify-end">
