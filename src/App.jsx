@@ -4,6 +4,7 @@ import { createDataFolder } from "./backend/init";
 import { createBox, readJsonBox } from "./backend/ioBox";
 import { setGlobalState, useGlobalState } from "./states/states";
 import { boxsContext } from "./provider";
+import { getQuestionToReview, howManyToReview } from "./backend/date.utils";
 
 const App = () => {
   const {
@@ -12,8 +13,6 @@ const App = () => {
     currentBoxIndex,
     setCurrentBoxIndex,
     updateCurrentBox,
-    questionToReview,
-    updateQuestionToReview,
   } = useContext(boxsContext);
 
   useEffect(() => {
@@ -21,28 +20,17 @@ const App = () => {
     createDataFolder(async () => {
       const jsonBox = await readJsonBox();
       setBoxs(jsonBox.boxs);
-      updateQuestionToReview(jsonBox.boxs[currentBoxIndex]);
     });
   }, []);
 
-  useEffect(() => {
-    if (boxs.length != 0) updateQuestionToReview(boxs[currentBoxIndex]);
-  }, [boxs]);
-
-  const howManyToReview = () => {
-    let count = 0;
-    questionToReview.forEach((elem) => {
-      count += elem.toReview.length;
-    });
-    return count;
-  };
+  useEffect(() => {}, [boxs]);
 
   return (
     <div className="flex">
       <div className="flex flex-col white-bg h-[100vh] w-[330px]">
         <div className="flex flex-col p-4">
-          <h1 className="europa-bold tracking-wide black-text">Leitner Box</h1>
-          <h2 className="euro-style accent-text -mt-2">ChunkLab</h2>
+          <h1 className="europa-bold tracking-wide black-text">Chunk Box</h1>
+          <h2 className="euro-style accent-text -mt-2">by ChunkLab</h2>
           <h6 className="euro-style black-text -mt-2 mb-[20px]">
             Mastering your subject 🔥🔥🔥
           </h6>
@@ -62,7 +50,7 @@ const App = () => {
               >
                 <span className="text-[25px] europa-bold">{_box.title}</span>
                 <span className="text-[15px] euro-style -mt-2">
-                  {howManyToReview()} to review
+                  {howManyToReview(_box)} to review
                 </span>
                 <div className="flex mt-2 -ml-1">
                   <span>🔥Day : {_box.days} </span>

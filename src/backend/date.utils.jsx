@@ -16,3 +16,12 @@ export const getQuestionToReview = (box) => {
   });
   return questionToReview;
 };
+
+export const howManyToReview = (box) => {
+  let count = 0;
+  const questionToReview = getQuestionToReview(box);
+  questionToReview.forEach((elem) => {
+    count += elem.toReview.length;
+  });
+  return count;
+};

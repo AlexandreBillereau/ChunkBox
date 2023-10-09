@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuestionNav from "./components/questionNav";
 import Start from "./components/start";
 import { setGlobalState, useGlobalState } from "./states/states";
 import CreateQuestion from "./components/createQuestion";
 import Review from "./components/review";
+import { getQuestionToReview } from "./backend/date.utils";
 
 const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [boxPage] = useGlobalState("boxPage");
+  const [questionsToReview, setQuestionsToReview] = useState(
+    getQuestionToReview(box)
+  );
 
   const renderPage = () => {
     if (boxPage == "start") {
@@ -52,7 +56,7 @@ const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
               </svg>
             </div>
             <div className="flex pl-[47px] mb-[24px]">
-              {box.level.map((level, index) => {
+              {questionsToReview.map((question, index) => {
                 return (
                   <div
                     key={index}
@@ -64,9 +68,13 @@ const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
                       currentLevel == index ? "lt-level-box-current" : ""
                     } flex flex-col w-[90px] h-[70px] mr-[15px] cursor-pointer`}
                   >
-                    <span className="poppins text-[30px]">{level.id}</span>
+                    <span className="poppins text-[30px]">
+                      {question.level}
+                    </span>
                     <span className="euro-style text-[15px] -mt-1">
-                      complete
+                      {question.toReview.length > 0
+                        ? `${question.toReview.length} to review`
+                        : "complete"}
                     </span>
                   </div>
                 );

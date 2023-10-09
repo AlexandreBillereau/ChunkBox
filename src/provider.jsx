@@ -6,7 +6,6 @@ export const boxsContext = createContext();
 export const BoxsProvider = ({ children }) => {
   const [boxs, setBoxs] = useState([]);
   const [currentBoxIndex, setCurrentBoxIndex] = useState(0);
-  const [questionToReview, setQuestionToReview] = useState([]);
 
   const updateCurrentBox = (box) => {
     const boxsUpdate = [...boxs];
@@ -27,8 +26,6 @@ export const BoxsProvider = ({ children }) => {
         currentBoxIndex,
         setCurrentBoxIndex,
         updateCurrentBox,
-        questionToReview,
-        updateQuestionToReview,
       }}
     >
       {children}
