@@ -13,6 +13,10 @@ const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
     getQuestionToReview(box)
   );
 
+  useEffect(() => {
+    setQuestionsToReview(getQuestionToReview(box));
+  }, [box]);
+
   const renderPage = () => {
     if (boxPage == "start") {
       return <Start box={box} updateCurrentBox={updateCurrentBox}></Start>;
@@ -26,7 +30,13 @@ const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
       );
     }
     if (boxPage == "play") {
-      return <Review box={box} updateCurrentBox={updateCurrentBox}></Review>;
+      return (
+        <Review
+          box={box}
+          updateCurrentBox={updateCurrentBox}
+          questionsToReview={questionsToReview}
+        ></Review>
+      );
     }
   };
 
