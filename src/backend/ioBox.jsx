@@ -36,6 +36,7 @@ export const IOcreateQuestion = async (boxId, title, question, answer) => {
     { contents: JSON.stringify(boxObj), path: "data/data.json" },
     { dir: BaseDirectory.AppLocalData }
   );
+  return boxObj;
 };
 
 export const createBox = async () => {

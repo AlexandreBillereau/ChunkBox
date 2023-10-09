@@ -1,36 +1,35 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import LeitnerBox from "./leitnerBox";
 import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { createDataFolder } from "./backend/init";
 import { createBox, readJsonBox } from "./backend/ioBox";
 import { Button, Form, Input, Modal } from "antd";
-import { setGlobalState } from "./states/states";
+import { setGlobalState, useGlobalState } from "./states/states";
+import { boxsContext } from "./provider";
 
 const App = () => {
-  const [boxs, setBoxs] = useState([]);
-  const [currentBox, setCurrentBox] = useState(0);
+  const { boxs, setBoxs, currentBox, setCurrentBox, updateCurentBox } =
+    useContext(boxsContext);
 
   useEffect(() => {
     //init the app
     createDataFolder(async () => {
       const jsonBox = await readJsonBox();
-      console.log(jsonBox);
+      console.log("global box: ", boxs);
       setBoxs(jsonBox.boxs);
     });
   }, []);
 
-  const updateCurentBox = (box) => {
-    //Update the boxs to re-render component
-    const boxsUpdate = [...boxs];
-    console.log("from app.jsx", box);
-    boxsUpdate[currentBox] = box;
-    setBoxs(boxsUpdate);
-    //write the boxs into file
-  };
+  // const updateCurentBox = (box) => {
+  //   const boxsUpdate = [...boxs];
+  //   console.log("from app.jsx", box);
+  //   boxsUpdate[currentBox] = box;
+  //   setBoxs(boxsUpdate);
+  // };
 
   return (
-    <>
+    <boxsContext.Provider value={boxs}>
       <div className="flex">
         <div className="flex flex-col white-bg h-[100vh] w-[330px]">
           <div className="flex flex-col p-4">
@@ -90,7 +89,7 @@ const App = () => {
         )}
         {/* content here */}
       </div>
-    </>
+    </boxsContext.Provider>
   );
 };
 
