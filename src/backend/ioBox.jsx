@@ -34,7 +34,7 @@ export const IOcreateQuestion = async (boxId, title, question, answer) => {
     title,
     question,
     answer,
-    data: new Date(),
+    date: new Date("2023-10-07T19:40:36"),
   });
   await writeTextFile(
     { contents: JSON.stringify(boxObj), path: "data/data.json" },

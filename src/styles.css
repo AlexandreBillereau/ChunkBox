@@ -17,6 +17,12 @@
   .btn-blue {
     @apply text-white font-bold px-4 py-2 rounded bg-blue-600 hover:bg-blue-500;
   }
+
+  ul,
+  ol {
+    list-style: revert;
+    padding-left: 1.2rem;
+  }
 }
 
 @font-face {
@@ -171,4 +177,10 @@ nav::-webkit-scrollbar-thumb {
 
 .questions-btn-nav {
   border-top: 1px solid var(--black-color);
+}
+
+.trix-editor > h1 {
+  font-size: 1.7rem !important;
+  font-family: sans-serif;
+  font-weight: normal;
 }

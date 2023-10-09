@@ -3,7 +3,7 @@ import QuestionNav from "./components/questionNav";
 import Start from "./components/start";
 import { setGlobalState, useGlobalState } from "./states/states";
 import CreateQuestion from "./components/createQuestion";
-import Play from "./components/play";
+import Review from "./components/review";
 
 const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -22,7 +22,7 @@ const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
       );
     }
     if (boxPage == "play") {
-      return <Play></Play>;
+      return <Review box={box} updateCurrentBox={updateCurrentBox}></Review>;
     }
   };
 

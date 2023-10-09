@@ -12,6 +12,8 @@ const App = () => {
     currentBoxIndex,
     setCurrentBoxIndex,
     updateCurrentBox,
+    questionToReview,
+    updateQuestionToReview,
   } = useContext(boxsContext);
 
   useEffect(() => {
@@ -19,8 +21,21 @@ const App = () => {
     createDataFolder(async () => {
       const jsonBox = await readJsonBox();
       setBoxs(jsonBox.boxs);
+      updateQuestionToReview(jsonBox.boxs[currentBoxIndex]);
     });
   }, []);
+
+  useEffect(() => {
+    if (boxs.length != 0) updateQuestionToReview(boxs[currentBoxIndex]);
+  }, [boxs]);
+
+  const howManyToReview = () => {
+    let count = 0;
+    questionToReview.forEach((elem) => {
+      count += elem.toReview.length;
+    });
+    return count;
+  };
 
   return (
     <div className="flex">
@@ -47,7 +62,7 @@ const App = () => {
               >
                 <span className="text-[25px] europa-bold">{_box.title}</span>
                 <span className="text-[15px] euro-style -mt-2">
-                  {_box.review} to review
+                  {howManyToReview()} to review
                 </span>
                 <div className="flex mt-2 -ml-1">
                   <span>🔥Day : {_box.days} </span>
