@@ -1,10 +1,9 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import QuestionNav from "./components/questionNav";
 import Start from "./components/start";
 import { setGlobalState, useGlobalState } from "./states/states";
 import CreateQuestion from "./components/createQuestion";
 import Play from "./components/play";
-import { boxsContext } from "./provider";
 
 const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -12,10 +11,15 @@ const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
 
   const renderPage = () => {
     if (boxPage == "start") {
-      return <Start box={box} updateBox={updateCurrentBox}></Start>;
+      return <Start box={box} updateCurrentBox={updateCurrentBox}></Start>;
     }
     if (boxPage == "create") {
-      return <CreateQuestion box={box}></CreateQuestion>;
+      return (
+        <CreateQuestion
+          box={box}
+          updateCurrentBox={updateCurrentBox}
+        ></CreateQuestion>
+      );
     }
     if (boxPage == "play") {
       return <Play></Play>;

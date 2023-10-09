@@ -72,6 +72,7 @@ const App = () => {
           </button>
         </div>
       </div>
+      {/* Todo: ternary and honme page */}
       {boxs.length && (
         <LeitnerBox
           box={boxs[currentBoxIndex]}

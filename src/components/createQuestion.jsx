@@ -3,10 +3,13 @@ import "trix/dist/trix.css";
 import { TrixEditor } from "react-trix";
 import { useRef } from "react";
 import { IOcreateQuestion } from "../backend/ioBox";
+import Title from "antd/es/skeleton/Title";
 
-const CreateQuestion = ({ box, updateBox = () => {} }) => {
+const CreateQuestion = ({ box, updateCurrentBox = () => {} }) => {
   const questionRef = useRef();
-  const inputRef = useRef();
+  const titleRef = useRef();
+  const answerRef = useRef();
+
   const handleChange = (html, text) => {
     console.log("html : ", html);
     console.log("text : ", text);
@@ -37,7 +40,7 @@ const CreateQuestion = ({ box, updateBox = () => {} }) => {
       </div>
       <div className="p-4">
         <input
-          ref={inputRef}
+          ref={titleRef}
           className="pl-2 h-[40px] w-[100%] text-black euro-style bg-transparent border-solid border-[#05031570] border-[1px] rounded-[3px]"
         ></input>
       </div>
@@ -59,19 +62,21 @@ const CreateQuestion = ({ box, updateBox = () => {} }) => {
       </div>
       <div className="p-4">
         <TrixEditor
+          ref={answerRef}
           className="euro-style h-[300px] text-black overflow-y-auto"
           onChange={handleChange}
         ></TrixEditor>
       </div>
       <div className="p-4 flex justify-end">
         <button
-          onClick={() => {
-            const newBox = IOcreateQuestion(
+          onClick={async () => {
+            const updatedBox = await IOcreateQuestion(
               box.id,
-              "Title",
-              "Question du futur",
-              "repoonse du futur"
+              titleRef.current.value,
+              questionRef.current.container.innerHTML,
+              answerRef.current.container.innerHTML
             );
+            updateCurrentBox(updatedBox);
           }}
           className="btn-new-question europa-bold p-3 rounded-[10px] mt-[24px] primary-bg"
         >

@@ -8,7 +8,7 @@ export const BoxsProvider = ({ children }) => {
 
   const updateCurrentBox = (box) => {
     const boxsUpdate = [...boxs];
-    console.log("from app.jsx", box);
+    console.log("from provider: currentBoxIndex -> ", currentBoxIndex);
     boxsUpdate[currentBoxIndex] = box;
     setBoxs(boxsUpdate);
   };

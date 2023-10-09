@@ -23,6 +23,10 @@ export const readJsonBox = async () => {
   }
 };
 
+/**
+ * @description create new question in current box at level 1
+ * @returns current box with new question.
+ */
 export const IOcreateQuestion = async (boxId, title, question, answer) => {
   const boxObj = await readJsonBox();
   const currentIndex = boxObj["boxs"].findIndex((elem) => elem.id == boxId);
@@ -36,7 +40,8 @@ export const IOcreateQuestion = async (boxId, title, question, answer) => {
     { contents: JSON.stringify(boxObj), path: "data/data.json" },
     { dir: BaseDirectory.AppLocalData }
   );
-  return boxObj;
+  console.log(boxObj.boxs[currentIndex]);
+  return boxObj.boxs[currentIndex];
 };
 
 export const createBox = async () => {
