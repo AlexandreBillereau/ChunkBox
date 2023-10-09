@@ -168,3 +168,7 @@ nav::-webkit-scrollbar-thumb {
 .trix-button-row > * {
   fill: var(--white-color) !important;
 }
+
+.questions-btn-nav {
+  border-top: 1px solid var(--black-color);
+}

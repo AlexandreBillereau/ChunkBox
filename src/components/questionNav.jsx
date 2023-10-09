@@ -31,7 +31,14 @@ const QuestionNav = ({ currentLevel = [] }) => {
         NEW QUESTION
       </button>
       {currentLevel.questions.map((quest, index) => {
-        return <p key={index}>{quest.title}</p>;
+        return (
+          <span
+            className="flex justify-center items-center accent-bg euro-style py-[10px] cursor-pointer questions-btn-nav"
+            key={index}
+          >
+            {quest.title}
+          </span>
+        );
       })}
     </div>
   );
