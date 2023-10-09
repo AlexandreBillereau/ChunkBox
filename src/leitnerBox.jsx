@@ -23,7 +23,7 @@ const LeitnerBox = ({ box, updateBox = () => {} }) => {
 
   return (
     <>
-      <section className="w-[100%] h-[100vh] flex flex-col">
+      <section className="w-[100%] h-[100vh] flex flex-col overflow-y-auto">
         <div className="top# secondary-bg flex pt-[20px] headerBox">
           <div className="level# flex flex-col ">
             <div className="flex items-center pl-[47px] mb-[6px]">
