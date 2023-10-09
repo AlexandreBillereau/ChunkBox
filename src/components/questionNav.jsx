@@ -30,8 +30,8 @@ const QuestionNav = ({ currentLevel = [] }) => {
       >
         NEW QUESTION
       </button>
-      {currentLevel.questions.map((quest) => {
-        return <p>{quest.title}</p>;
+      {currentLevel.questions.map((quest, index) => {
+        return <p key={index}>{quest.title}</p>;
       })}
     </div>
   );
