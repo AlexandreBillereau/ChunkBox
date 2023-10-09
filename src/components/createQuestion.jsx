@@ -4,7 +4,7 @@ import { TrixEditor } from "react-trix";
 import { useRef } from "react";
 import { IOcreateQuestion } from "../backend/ioBox";
 
-const CreateQuestion = ({ box }) => {
+const CreateQuestion = ({ box, updateBox = () => {} }) => {
   const questionRef = useRef();
   const inputRef = useRef();
   const handleChange = (html, text) => {
@@ -66,7 +66,7 @@ const CreateQuestion = ({ box }) => {
       <div className="p-4 flex justify-end">
         <button
           onClick={() => {
-            IOcreateQuestion(
+            const newBox = IOcreateQuestion(
               box.id,
               "Title",
               "Question du futur",

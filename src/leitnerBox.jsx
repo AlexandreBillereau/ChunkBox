@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import QuestionNav from "./components/questionNav";
 import Start from "./components/start";
 import { setGlobalState, useGlobalState } from "./states/states";
 import CreateQuestion from "./components/createQuestion";
 import Play from "./components/play";
+import { boxsContext } from "./provider";
 
-const LeitnerBox = ({ box, updateBox = () => {} }) => {
+const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [boxPage] = useGlobalState("boxPage");
 
   const renderPage = () => {
     if (boxPage == "start") {
-      return <Start box={box} updateBox={updateBox}></Start>;
+      return <Start box={box} updateBox={updateCurrentBox}></Start>;
     }
     if (boxPage == "create") {
       return <CreateQuestion box={box}></CreateQuestion>;

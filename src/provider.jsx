@@ -4,18 +4,24 @@ export const boxsContext = createContext();
 
 export const BoxsProvider = ({ children }) => {
   const [boxs, setBoxs] = useState([]);
-  const [currentBox, setCurrentBox] = useState(0);
+  const [currentBoxIndex, setCurrentBoxIndex] = useState(0);
 
-  const updateCurentBox = (box) => {
+  const updateCurrentBox = (box) => {
     const boxsUpdate = [...boxs];
     console.log("from app.jsx", box);
-    boxsUpdate[currentBox] = box;
+    boxsUpdate[currentBoxIndex] = box;
     setBoxs(boxsUpdate);
   };
 
   return (
     <boxsContext.Provider
-      value={{ boxs, setBoxs, currentBox, setCurrentBox, updateCurentBox }}
+      value={{
+        boxs,
+        setBoxs,
+        currentBoxIndex,
+        setCurrentBoxIndex,
+        updateCurrentBox,
+      }}
     >
       {children}
     </boxsContext.Provider>
