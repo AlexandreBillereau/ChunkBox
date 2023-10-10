@@ -30,11 +30,13 @@ export const readJsonBox = async () => {
 export const IOcreateQuestion = async (boxId, title, question, answer) => {
   const boxObj = await readJsonBox();
   const currentIndex = boxObj["boxs"].findIndex((elem) => elem.id == boxId);
+  const date = new Date();
+  date.setHours(0, 0, 0, 0);
   boxObj.boxs[currentIndex].level[0].questions.push({
     title,
     question,
     answer,
-    date: new Date(),
+    date: date,
   });
   await writeTextFile(
     { contents: JSON.stringify(boxObj), path: "data/data.json" },
