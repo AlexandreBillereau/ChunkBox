@@ -184,3 +184,7 @@ nav::-webkit-scrollbar-thumb {
   font-family: sans-serif;
   font-weight: normal;
 }
+
+.question-container h1 {
+  font-size: 28px;
+}
