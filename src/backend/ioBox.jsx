@@ -104,6 +104,19 @@ export const IOchangeQuestionLvl = async (
   return boxObj.boxs[currentIndex];
 };
 
+export const IOupdateBoxName = async (boxId, boxName) => {
+  const boxObj = await readJsonBox();
+  const currentIndex = boxObj["boxs"].findIndex((elem) => elem.id == boxId);
+  boxObj.boxs[currentIndex].title = boxName;
+  console.log(boxObj.boxs[currentIndex]);
+  await removeFile("data/data.json", { dir: BaseDirectory.AppLocalData });
+  await writeTextFile(
+    { contents: JSON.stringify(boxObj), path: "data/data.json" },
+    { dir: BaseDirectory.AppLocalData }
+  );
+  return boxObj.boxs[currentIndex];
+};
+
 export const createBox = async () => {
   try {
     const boxObj = await readJsonBox();

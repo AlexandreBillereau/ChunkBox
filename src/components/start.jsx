@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { setGlobalState } from "../states/states";
+import { IOupdateBoxName } from "../backend/ioBox";
 
-const Start = ({ box, updateBox = () => {} }) => {
+const Start = ({ box, updateCurrentBox = () => {} }) => {
   const [isTitleChange, setIsTitleChange] = useState(false);
 
-  const handleInputTitleBox = (e) => {
-    updateBox({ ...box, title: e.target.value });
+  const handleInputTitleBox = async (e) => {
+    const boxUpdate = await IOupdateBoxName(box.id, e.target.value);
+    updateCurrentBox(boxUpdate);
   };
 
   return (
@@ -32,7 +34,7 @@ const Start = ({ box, updateBox = () => {} }) => {
         </svg>
         {isTitleChange ? (
           <input
-            onInput={(e) => {
+            onBlur={(e) => {
               handleInputTitleBox(e);
             }}
           ></input>
