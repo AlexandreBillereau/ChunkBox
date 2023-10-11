@@ -34,6 +34,7 @@ const Start = ({ box, updateCurrentBox = () => {} }) => {
         </svg>
         {isTitleChange ? (
           <input
+            className="text-white euro-style text-[25px] rounded-[5px] h-[30px] w-[300px] mt-2 accent-bg p-4"
             onBlur={(e) => {
               handleInputTitleBox(e);
             }}
