@@ -58,6 +58,21 @@ export const IOchangeQuestionLvl = async (
   const indexOfquestion = boxObj.boxs[currentIndex].level[
     levelId - 1
   ].questions.findIndex((elem) => elem.title == question.title);
+
+  if (levelUpdate == 1 && levelId == 1) {
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    boxObj.boxs[currentIndex].level[0].questions[indexOfquestion].date =
+      currentDate;
+
+    await removeFile("data/data.json", { dir: BaseDirectory.AppLocalData });
+    await writeTextFile(
+      { contents: JSON.stringify(boxObj), path: "data/data.json" },
+      { dir: BaseDirectory.AppLocalData }
+    );
+    return boxObj.boxs[currentIndex];
+  }
+
   boxObj.boxs[currentIndex].level[levelId - 1].questions.splice(
     indexOfquestion,
     1

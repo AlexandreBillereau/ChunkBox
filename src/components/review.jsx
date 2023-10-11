@@ -28,17 +28,35 @@ const Review = ({
       }
       setIsQuestionable(false);
     }
-
-    //if question null print done
   }, [questionsToReview]);
 
   const handleGoodAnswer = async () => {
-    console.log(currentLevel + 1);
     const boxUpdate = await IOchangeQuestionLvl(
       box.id,
       currentQuestion,
       currentLevel,
       currentLevel + 1
+    );
+    updateCurrentBox(boxUpdate);
+  };
+
+  const handleBadAnswer = async () => {
+    if (currentLevel == 1) {
+      const boxUpdate = await IOchangeQuestionLvl(
+        box.id,
+        currentQuestion,
+        currentLevel,
+        currentLevel
+      );
+      updateCurrentBox(boxUpdate);
+      return;
+    }
+
+    const boxUpdate = await IOchangeQuestionLvl(
+      box.id,
+      currentQuestion,
+      currentLevel,
+      currentLevel - 1
     );
     updateCurrentBox(boxUpdate);
   };
@@ -74,7 +92,12 @@ const Review = ({
               show answer
             </button>
             <div className="flex">
-              <button className="rounded-[9999px] w-[100px] h-[100px] accent-bg my-4 mx-[50px] flex justify-center items-center">
+              <button
+                onClick={() => {
+                  handleBadAnswer();
+                }}
+                className="rounded-[9999px] w-[100px] h-[100px] accent-bg my-4 mx-[50px] flex justify-center items-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
