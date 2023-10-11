@@ -30,14 +30,10 @@ const Review = ({
     }
 
     //if question null print done
-  }, [box]);
+  }, [questionsToReview]);
 
   const handleGoodAnswer = async () => {
-    if (currentLevel + 1 > 7) {
-      // increment learned
-      return;
-    }
-
+    console.log(currentLevel + 1);
     const boxUpdate = await IOchangeQuestionLvl(
       box.id,
       currentQuestion,

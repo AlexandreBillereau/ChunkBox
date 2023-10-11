@@ -114,7 +114,7 @@ const LeitnerBox = ({ box, updateCurrentBox = () => {} }) => {
             </div>
             <div className="flex pl-[47px] mb-[24px]">
               <div className="lt-learned-box flex flex-col justify-center items-center w-[90px] h-[70px] mr-[15px]">
-                <span className="poppins text-[30px]">0</span>
+                <span className="poppins text-[30px]">{box.learned}</span>
               </div>
             </div>
           </div>

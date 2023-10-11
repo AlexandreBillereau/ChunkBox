@@ -62,6 +62,18 @@ export const IOchangeQuestionLvl = async (
     indexOfquestion,
     1
   );
+
+  if (levelUpdate > 7) {
+    boxObj.boxs[currentIndex].learned += 1;
+    console.log(boxObj.boxs[currentIndex]);
+    await removeFile("data/data.json", { dir: BaseDirectory.AppLocalData });
+    await writeTextFile(
+      { contents: JSON.stringify(boxObj), path: "data/data.json" },
+      { dir: BaseDirectory.AppLocalData }
+    );
+    return boxObj.boxs[currentIndex];
+  }
+
   const dateUpdate = new Date();
   dateUpdate.setHours(0, 0, 0, 0);
   const questionUpdate = { ...question, date: dateUpdate };
@@ -70,7 +82,6 @@ export const IOchangeQuestionLvl = async (
     questionUpdate
   );
   await removeFile("data/data.json", { dir: BaseDirectory.AppLocalData });
-  console.log(boxObj);
   await writeTextFile(
     { contents: JSON.stringify(boxObj), path: "data/data.json" },
     { dir: BaseDirectory.AppLocalData }
