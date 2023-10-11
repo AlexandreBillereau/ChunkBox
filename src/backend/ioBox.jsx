@@ -2,6 +2,7 @@ import {
   BaseDirectory,
   createDir,
   readTextFile,
+  removeFile,
   writeFile,
   writeTextFile,
 } from "@tauri-apps/api/fs";
@@ -30,7 +31,7 @@ export const readJsonBox = async () => {
 export const IOcreateQuestion = async (boxId, title, question, answer) => {
   const boxObj = await readJsonBox();
   const currentIndex = boxObj["boxs"].findIndex((elem) => elem.id == boxId);
-  const date = new Date();
+  const date = new Date("2023-10-10T18:39:13");
   date.setHours(0, 0, 0, 0);
   boxObj.boxs[currentIndex].level[0].questions.push({
     title,
@@ -38,11 +39,42 @@ export const IOcreateQuestion = async (boxId, title, question, answer) => {
     answer,
     date: date,
   });
+  await removeFile("data/data.json", { dir: BaseDirectory.AppLocalData });
   await writeTextFile(
     { contents: JSON.stringify(boxObj), path: "data/data.json" },
     { dir: BaseDirectory.AppLocalData }
   );
-  console.log(boxObj.boxs[currentIndex]);
+  return boxObj.boxs[currentIndex];
+};
+
+export const IOchangeQuestionLvl = async (
+  boxId,
+  question,
+  levelId,
+  levelUpdate
+) => {
+  const boxObj = await readJsonBox();
+  const currentIndex = boxObj["boxs"].findIndex((elem) => elem.id == boxId);
+  const indexOfquestion = boxObj.boxs[currentIndex].level[
+    levelId - 1
+  ].questions.findIndex((elem) => elem.title == question.title);
+  boxObj.boxs[currentIndex].level[levelId - 1].questions.splice(
+    indexOfquestion,
+    1
+  );
+  const dateUpdate = new Date();
+  dateUpdate.setHours(0, 0, 0, 0);
+  const questionUpdate = { ...question, date: dateUpdate };
+  console.log(questionUpdate);
+  boxObj.boxs[currentIndex].level[levelUpdate - 1].questions.push(
+    questionUpdate
+  );
+  await removeFile("data/data.json", { dir: BaseDirectory.AppLocalData });
+  console.log(boxObj);
+  await writeTextFile(
+    { contents: JSON.stringify(boxObj), path: "data/data.json" },
+    { dir: BaseDirectory.AppLocalData }
+  );
   return boxObj.boxs[currentIndex];
 };
 

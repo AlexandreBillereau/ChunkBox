@@ -14,10 +14,6 @@ export const BoxsProvider = ({ children }) => {
     setBoxs(boxsUpdate);
   };
 
-  const updateQuestionToReview = (box) => {
-    setQuestionToReview(getQuestionToReview(box));
-  };
-
   return (
     <boxsContext.Provider
       value={{

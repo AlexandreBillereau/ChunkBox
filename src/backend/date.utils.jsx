@@ -1,5 +1,5 @@
 const compareDate = (date, dayToWait) => {
-  const currentDate = new Date();
+  const currentDate = new Date().setHours(0, 0, 0, 0);
   const questionDate = new Date(date);
   const diffMilliSeconds = Math.abs(questionDate - currentDate);
   const diffInDays = diffMilliSeconds / (1000 * 60 * 60 * 24);
