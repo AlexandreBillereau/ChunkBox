@@ -10,6 +10,7 @@ const Review = ({
   const [isQuestionable, setIsQuestionable] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
+  const [showAnswers, setShowAnswers] = useState(false);
 
   //todo : update question with new date onClick
   //todo : pass next question onClick (state?)
@@ -55,9 +56,27 @@ const Review = ({
           <h1 className="europa-bold tracking-wide text-[30px] p-[30px]">
             {currentQuestion.title}
           </h1>
-          <p>{currentQuestion.question}</p>
-          <p>{currentQuestion.answer}</p>
+
+          {!showAnswers ? (
+            <div
+              className="p-[30px]"
+              dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
+            ></div>
+          ) : (
+            <div
+              className="p-[30px]"
+              dangerouslySetInnerHTML={{ __html: currentQuestion.answer }}
+            ></div>
+          )}
         </div>
+        <button
+          className="button-new-box primary-bg europa-bold mt-5 w-[200px] px-[41px] py-[16px] rounded-[5px] text-[15px]"
+          onClick={() => {
+            setShowAnswers(!showAnswers);
+          }}
+        >
+          show answer
+        </button>
         <div className="flex">
           <button className="rounded-[9999px] w-[100px] h-[100px] accent-bg my-4 mx-[50px] flex justify-center items-center">
             <svg
