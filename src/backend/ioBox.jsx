@@ -31,7 +31,7 @@ export const readJsonBox = async () => {
 export const IOcreateQuestion = async (boxId, title, question, answer) => {
   const boxObj = await readJsonBox();
   const currentIndex = boxObj["boxs"].findIndex((elem) => elem.id == boxId);
-  const date = new Date("2023-10-10T18:39:13");
+  const date = new Date();
   date.setHours(0, 0, 0, 0);
   boxObj.boxs[currentIndex].level[0].questions.push({
     title,
