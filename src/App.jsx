@@ -5,6 +5,7 @@ import { createBox, readJsonBox } from "./backend/ioBox";
 import { setGlobalState, useGlobalState } from "./states/states";
 import { boxsContext } from "./provider";
 import { getQuestionToReview, howManyToReview } from "./backend/date.utils";
+import { useDb } from "./backend/useDb";
 
 const App = () => {
   const {
@@ -14,6 +15,8 @@ const App = () => {
     setCurrentBoxIndex,
     updateCurrentBox,
   } = useContext(boxsContext);
+
+  const db = useDb();
 
   useEffect(() => {
     //init the app
