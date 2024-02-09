@@ -26,6 +26,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
 
+        
+      - name: install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Rust setup
         uses: dtolnay/rust-toolchain@stable
 
@@ -39,12 +45,6 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'yarn' # Set this to npm, yarn or pnpm.
-
-        
-      - name: install node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
           
       - name: Install frontend dependencies
         # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
