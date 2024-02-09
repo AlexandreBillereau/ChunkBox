@@ -8,4 +8,4 @@ This template should help get you started developing with Tauri and React in Vit
 
 ## Look The build
 
-test 2
+s
