@@ -1,11 +1,22 @@
-# Tauri + React
+# ChunkBox Prototype
 
-This template should help get you started developing with Tauri and React in Vite.
+Welcome to ChunkBox Prototype, an application designed to optimize your learning experience using the spaced learning method. Developed using a combination of React and Rust, ChunkBox offers an approach for reinforcing your knowledge effectively and sustainably over time.
 
-## Recommended IDE Setup
+# How to dev on
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+```sh
+npm i # for install dependecies
 
-## Look The build
+npm run tauri dev # to pass in dev mode work in any
+                  # device.
+```
 
-s
+# How to build
+
+```sh
+npm run tauri build # > Windows work
+                    # > Mac os owrk
+                    # > Linux your probably need a docker
+                    #   and the tauri documentation.
+
+```
